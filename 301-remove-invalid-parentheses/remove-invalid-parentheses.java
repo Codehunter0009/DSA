@@ -1,0 +1,56 @@
+class Solution {
+    public List<String> removeInvalidParentheses(String s) {
+        List <String> ans=new ArrayList<>();
+        Set<String> visited=new HashSet<>();
+        Queue<String> queue=new LinkedList<>();
+        
+    queue.offer(s);
+    visited.add(s);
+
+    boolean found=false;
+
+    while(!queue.isEmpty()){
+        int size=queue.size();
+
+        for(int i=0;i<size;i++){
+            String current=queue.poll();
+            if(isValid(current)){
+                ans.add(current);
+                found=true;
+            }
+            if(found){
+                continue;
+            }
+            //remove a parathesis
+            for(int j=0;j<current.length();j++){
+                char ch=current.charAt(j);
+
+                if(ch!='('&& ch!=')'){continue;}
+                String next= current.substring(0,j)+ current.substring(j+1);
+                if(!visited.contains(next)){
+                    visited.add(next);
+                    queue.offer(next);
+                }
+            }
+        }
+        if(found){break;}
+
+
+    }
+     return ans;
+
+
+    }
+
+    public boolean isValid(String s){
+        int count=0;
+        for(char ch:s.toCharArray()){
+            if(ch=='('){count++;}
+            else if(ch==')'){count--;
+            if(count<0){return false;}
+            }
+        }
+        return count==0;
+    }
+
+}
