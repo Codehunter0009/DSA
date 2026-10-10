@@ -12,6 +12,11 @@ class Solution {
         //    return new int[][] pq.poll();
         // }
 
+//imp point to remeber heree!!!!!!!
+//point[i] gives the entire element [1,2]
+//point[i][0] gives the x coordinates =1
+//point[i][1] gives the y coordinates =2
+
     PriorityQueue<int[]>pq=new PriorityQueue<>((a,b)->b[0]-a[0]);//comparator operator
     for(int i=0;i<points.length;i++){
         int distance=points[i][0]*points[i][0]+points[i][1]*points[i][1];
@@ -26,6 +31,7 @@ class Solution {
             int[] element=pq.poll();
             int originalIndex =element[1];
             ans[idx++]=points[originalIndex];//pq.poll()[1]
+            //ans[idx++]=points[pq.poll()[1]] 
         }
         return ans;
 
