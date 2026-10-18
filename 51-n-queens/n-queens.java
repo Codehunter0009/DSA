@@ -4,41 +4,36 @@ class Solution {
 
     public boolean isSafe(int row, int col, char[][] board, int n) {
 
-        // Check upper diagonal (left)
-        int duprow = row;
-        int dupcol = col;
+  // Check upper-left diagonal
+int duprow = row;
+int dupcol = col;
 
-        while (row >= 0 && col >= 0) {
-            if (board[row][col] == 'Q') {
-                return false;
-            }
-            row--;
-            col--;
-        }
+while (row >= 0 && col >= 0) {
+    if (board[row][col] == 'Q') return false;
+    row--;
+    col--;
+}
 
-        // Check left side of the same row
-        col = dupcol;
+// Check left side
+col = dupcol;
+row = duprow;
 
-        while (col >= 0) {
-            if (board[duprow][col] == 'Q') {
-                return false;
-            }
-            col--;
-        }
+while (col >= 0) {
+    if (board[row][col] == 'Q') return false;
+    col--;
+}
 
-        // Check lower diagonal (left)
-        row = duprow;
-        col = dupcol;
+// Check lower-left diagonal
+row = duprow;
+col = dupcol;
 
-        while (row < n && col >= 0) {
-            if (board[row][col] == 'Q') {
-                return false;
-            }
-            row++;
-            col--;
-        }
+while (row < n && col >= 0) {
+    if (board[row][col] == 'Q') return false;
+    row++;
+    col--;
+}
 
-        return true;
+return true;
     }
 
     public void solve(int col, char[][] board,
